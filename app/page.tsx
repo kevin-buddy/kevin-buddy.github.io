@@ -91,7 +91,7 @@ const HeroSection = () => (
 // Project Card Component
 const ProjectCard = ({ imgSrc, title, description, tags, demoUrl, repoUrl }: ProjectCardProps) => (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl flex flex-col">
-        <img src={imgSrc} alt={`${title} screenshot`} className="w-full h-56 object-cover" />
+        <Image src={imgSrc} alt={`${title} screenshot`} height={56} width={1366} className="w-full h-56 object-cover"/>
         <div className="p-6 flex flex-col flex-grow">
             <h3 className="text-2xl font-bold mb-2">{title}</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-4 h-24 flex-grow">{description}</p>
@@ -174,7 +174,7 @@ const AboutSection = () => (
         <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
                 <div className="md:w-1/3 flex-shrink-0">
-                    <img src="/KS-Logo.jpg" alt="About Me Image" className="rounded-full shadow-lg mx-auto w-64 h-64 md:w-80 md:h-80 object-cover"></img>
+                    <Image src="/KS-Logo.jpg" alt="About Me Image" height={512} width={512} className="rounded-full shadow-lg mx-auto w-64 h-64 md:w-80 md:h-80 object-cover"/>
                 </div>
                 <div className="md:w-2/3">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-100">About Me</h2>
@@ -184,10 +184,10 @@ const AboutSection = () => (
                     <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                         I believe in the power of technology to solve problems and create amazing experiences. Let's help you solve your problem together, feel free to contact me right away.
                     </p>
-                    {/* <a href="/path-to-your-resume.pdf" download className="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 inline-flex items-center">
+                    <a href="/path-to-your-resume.pdf" download className="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 inline-flex items-center">
                         <Download className="w-5 h-5 mr-2" />
                         Download Resume
-                    </a> */}
+                    </a>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 'use server'
+/* eslint-disable */
 const nodemailer = require('nodemailer');
 
 export const sendEmailServer = async (prevState: any, formData: FormData) => {
