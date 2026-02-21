@@ -6,7 +6,7 @@ import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Github, Linkedin, Twitter, ExternalLink, Menu, X, Download, Lock } from 'lucide-react';
-import { sendEmailServer } from "../app/nodemailer";
+// import { sendEmailServer } from "../app/nodemailer";
 
 // Initialize the Inter font
 const inter = Inter({ subsets: ['latin'] });
@@ -196,42 +196,42 @@ const AboutSection = () => (
 
 const ContactSection = () => {
     const formRef = useRef<HTMLFormElement>(null);
-    const [state, formAction] = useFormState(sendEmailServer,{message: 'init'});
+    // const [state, formAction] = useFormState(sendEmailServer,{message: 'init'});
     const [loading, setLoading] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
-    useEffect(() => {
-        if (state.message === 'success' && formRef.current) {
-        formRef.current.reset();
-        setShowPopup(true);
-        } else if (state.message !== 'init') {
-        console.log(state.message);
-        alert(state.message);
-        }
-        setLoading(false);
-    }, [state])
+    // useEffect(() => {
+    //     if (state.message === 'success' && formRef.current) {
+    //     formRef.current.reset();
+    //     setShowPopup(true);
+    //     } else if (state.message !== 'init') {
+    //     console.log(state.message);
+    //     alert(state.message);
+    //     }
+    //     setLoading(false);
+    // }, [state])
     const handleSubmit = () => {
         setLoading(true);
     };
     const closePopup = () => {
         setShowPopup(false);
     }
-    useEffect(() => {
-        if (state.message === 'success' && formRef.current) {
-        formRef.current.reset();
-        setShowPopup(true);
-        } else if (state.message !== 'init') {
-        console.log(state.message);
-        alert(state.message);
-        }
-        setLoading(false);
-    }, [state])
+    // useEffect(() => {
+    //     if (state.message === 'success' && formRef.current) {
+    //     formRef.current.reset();
+    //     setShowPopup(true);
+    //     } else if (state.message !== 'init') {
+    //     console.log(state.message);
+    //     alert(state.message);
+    //     }
+    //     setLoading(false);
+    // }, [state])
     return (
         <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
             <div className="container mx-auto px-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800 dark:text-gray-100">Get In Touch</h2>
                 <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">I'm currently available for freelance work and open to new opportunities. Feel free to send me a message!</p>
                 <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                    <form action={formAction} onSubmit={handleSubmit} ref={formRef}>
+                    <form onSubmit={handleSubmit} ref={formRef}>
                         <div className="mb-4">
                             <label htmlFor="name" className="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Name</label>
                             <input type="text" id="name" name="name" className="w-full px-3 py-2 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
