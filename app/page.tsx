@@ -38,7 +38,7 @@ const Header = () => {
                     KS
                 </Link> */}
                 <Link href="#" className="pointer flex items-center">
-                    <Image alt='Logo Frescura' src="/KS-Logo.png" width="48" height="48"/>
+                    <Image alt='Logo Frescura' src="./KS-Logo.png" width="48" height="48"/>
                     {/* <picture>
                         <img alt='Logo Frescura' src="/KS-Logo.jpg" className="mr-3" />
                     </picture> */}
@@ -77,7 +77,7 @@ const Header = () => {
 const HeroSection = () => (
     <section id="home" className="text-white py-20 md:py-32 bg-gradient-to-b from-[#1a1a2e] to-[#16213e]">
         <div className="container mx-auto px-6 text-center">
-            <Image alt='Profile Picture' src="/KS-Logo.jpg" width={128} height={128} className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-indigo-400/50"/>
+            <Image alt='Profile Picture' src="./KS-Logo.jpg" width={128} height={128} className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-indigo-400/50"/>
             {/* <img src="https://placehold.co/128x128/667eea/ffffff?text=JD" alt="Profile Picture" className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-indigo-400/50" /> */}
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">Hi, I'm Kevin Setiabudi</h1>
             <p className="text-lg md:text-2xl text-indigo-200 mb-8 max-w-3xl mx-auto">A passionate Full Stack Developer creating modern and responsive web applications and more.</p>
@@ -174,7 +174,7 @@ const AboutSection = () => (
         <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
                 <div className="md:w-1/3 flex-shrink-0">
-                    <Image src="/KS-Logo.jpg" alt="About Me Image" height={512} width={512} className="rounded-full shadow-lg mx-auto w-64 h-64 md:w-80 md:h-80 object-cover"/>
+                    <Image src="./KS-Logo.jpg" alt="About Me Image" height={512} width={512} className="rounded-full shadow-lg mx-auto w-64 h-64 md:w-80 md:h-80 object-cover"/>
                 </div>
                 <div className="md:w-2/3">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-100">About Me</h2>
