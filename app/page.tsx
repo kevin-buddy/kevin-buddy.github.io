@@ -75,12 +75,12 @@ const Header = () => {
 };
 
 const HeroSection = () => (
-    <section id="home" className="text-white py-20 md:py-32 bg-gradient-to-b from-[#1a1a2e] to-[#16213e]">
+    <section id="home" className="text-white py-20 md:py-32 bg-gradient-to-br from-zinc-900 via-zinc-800 to-stone-900 relative overflow-hidden">
         <div className="container mx-auto px-6 text-center">
             <Image alt='Profile Picture' src="./KS-Logo.jpg" width={128} height={128} className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-indigo-400/50"/>
             {/* <img src="https://placehold.co/128x128/667eea/ffffff?text=JD" alt="Profile Picture" className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-indigo-400/50" /> */}
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">Hi, I'm Kevin Setiabudi</h1>
-            <p className="text-lg md:text-2xl text-indigo-200 mb-8 max-w-3xl mx-auto">A passionate Full Stack Developer creating modern and responsive web applications and more.</p>
+            <p className="text-lg md:text-2xl text-indigo-200 mb-8 max-w-3xl mx-auto">A Full Stack Developer passionate in learning programming, economics and business.</p>
             <a href="#projects" className="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition-transform transform hover:scale-105 inline-block">
                 View My Work
             </a>
@@ -134,7 +134,7 @@ const ProjectsSection = () => {
         {
             imgSrc: "/SAP-ABAP.png",
             title: "SAP ABAP",
-            description: "A SAP ABAP program with custom table, custom function module.",
+            description: "Experienced with various ABAP projects such as creating ABAP program (SE38) and ABAP function module (SE37) and ABAP Smart Forms.",
             tags: ["SAP", "ABAP"],
             demoUrl: "",
             repoUrl: "",
@@ -142,7 +142,7 @@ const ProjectsSection = () => {
         {
             imgSrc: "/Frescura.png",
             title: "Frescura Landing Page",
-            description: "A landing page for Frescura a healthy food brand that helps people to read history about the brand, see product catalog and even contact us using nodemailer.",
+            description: "A landing page for Frescura a healthy food brand that helped showcasing brand's image, history, see product catalog and even contact us using nodemailer.",
             tags: ["Next.js", "Nodemailer", "Tailwind CSS"],
             demoUrl: "https://frescura.vercel.app/",
             repoUrl: "https://github.com/kevin-buddy/frescura",
@@ -150,7 +150,7 @@ const ProjectsSection = () => {
         {
             imgSrc: "/binance-bot.png",
             title: "Trading Robot Using Binance API",
-            description: "A trading robot in Binance mimicking grid trading strategy where the bot will contrinously make long and short order untill TP profit is bigger than fee and loses.",
+            description: "A trading robot in Binance using a strategy where the bot will continuously make long and short order using a certain formula to prevent martingale problem untill it hits TP.",
             tags: ["Python"],
             demoUrl: "",
             repoUrl: "",
@@ -179,15 +179,15 @@ const AboutSection = () => (
                 <div className="md:w-2/3">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-100">About Me</h2>
                     <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                        A passionate software developer graduated with a Computer Science degree. I have experience with a variety of technologies including Python, Next.js, Node.js, and Vue.js. I'm also an experienced SAP that have trained users and also ABAP developer that have made and enhance ABAP program dan function modules.
+                        A software developer graduated with a Computer Science degree. I have experience for both Front-End and Back-End using various framwork including Python, Next.js, Node.js. I'm also an experienced SAP Technical consultant that have experience in CO module and implementing multiple custom program and function module for web service.
                     </p>
                     <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                        I believe in the power of technology to solve problems and create amazing experiences. Let's help you solve your problem together, feel free to contact me right away.
+                        I believe in the power of technology to solve problems and create amazing experiences. Feel free to contact me right away.
                     </p>
-                    <a href="/path-to-your-resume.pdf" download className="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 inline-flex items-center">
+                    {/* <a href="/path-to-your-resume.pdf" download className="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 inline-flex items-center">
                         <Download className="w-5 h-5 mr-2" />
                         Download Resume
-                    </a>
+                    </a> */}
                 </div>
             </div>
         </div>
@@ -231,7 +231,10 @@ const ContactSection = () => {
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800 dark:text-gray-100">Get In Touch</h2>
                 <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">I'm currently available for freelance work and open to new opportunities. Feel free to send me a message!</p>
                 <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                    <form onSubmit={handleSubmit} ref={formRef}>
+                    <div className="text-center">
+                        <a href="mailto:kevin.setiabudi@protonmail.com" className="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 w-full sm:w-auto">Send Email</a>
+                    </div>
+                    {/* <form onSubmit={handleSubmit} ref={formRef}>
                         <div className="mb-4">
                             <label htmlFor="name" className="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Name</label>
                             <input type="text" id="name" name="name" className="w-full px-3 py-2 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
@@ -272,7 +275,7 @@ const ContactSection = () => {
                                     )}
                             </button>
                         </div>
-                    </form>
+                    </form> */}
                 </div>
             </div>
             {showPopup && (
