@@ -253,11 +253,14 @@ const AboutSection = () => (
         </div>
       </div>
       <div className="flex-1 w-full flex justify-center md:justify-end">
-        {/* Placeholder for a classy abstract image or headshot */}
         <div className="relative w-full max-w-md aspect-square">
           <div className="absolute inset-0 bg-gray-200 rounded-2xl transform rotate-3 transition-transform hover:rotate-6 duration-300"></div>
-          <div className="absolute inset-0 bg-white border border-gray-200 rounded-2xl flex items-center justify-center p-8 text-center shadow-sm">
-            <span className="text-gray-400 font-medium">[ Your Image / Abstract Art Here ]</span>
+          <div className="absolute inset-0 bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+            <img 
+              src="https://xbgczuawxzxevrzunbkx.supabase.co/storage/v1/object/public/personal_project_portfolio/KS-Logo.png" 
+              alt="Alex Developer" 
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </div>
