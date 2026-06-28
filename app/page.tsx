@@ -1,60 +1,24 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, ExternalLink, Menu, X, ArrowRight, Code, Briefcase, User, Send, Lock } from 'lucide-react';
+import { supabase } from './lib/supabase';
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  demo_url?: string;
+  github_url?: string;
+  image?: string; // Change to string if you plan to use an image URL
+  isProprietary?: boolean;
+}
 
 // --- DATA (Easily swap this out with your actual details) ---
 const PORTFOLIO_DATA = {
   name: "Kevin Setiabudi",
-  role: "Full-Stack Engineer & Designer",
+  role: "Full-Stack Engineer",
   tagline: "Crafting elegant, high-performance digital experiences.",
-  about: "I am a passionate developer who bridges the gap between engineering and design. With a focus on creating intuitive and scalable applications, I thrive on turning complex problems into simple, beautiful solutions. When I'm not writing code, I'm exploring new technologies, contributing to open source, or refining my design sensibilities.",
-  projects: [
-    {
-      id: 1,
-      title: "SAP ABAP",
-      description: "Experienced with various ABAP projects such as creating ABAP program (SE38) and ABAP function module (SE37) and ABAP Smart Forms.",
-      tech: ["SAP", "ABAP"],
-      link: "#",
-      image: true,
-      isProprietary: true
-    },
-    {
-      id: 2,
-      title: "Frescura Landing Page",
-      description: "A landing page for Frescura a healthy food brand that helped showcasing brand's image, history, see product catalog and even contact us using nodemailer.",
-      tech: ["Next.js", "Nodemailer", "Tailwind CSS"],
-      link: "https://frescura.vercel.app/",
-      image: true,
-      isProprietary: false
-    },
-    {
-      id: 3,
-      title: "Trading Robot Using Binance API",
-      description: "A trading robot in Binance using a strategy where the bot will continuously make long and short order using a certain formula to prevent martingale problem untill it hits TP.",
-      tech: ["Python"],
-      link: "#",
-      image: true,
-      isProprietary: true
-    },
-    {
-      id: 4,
-      title: "Cute Date Asking Website",
-      description: "A cute website for asking dates, that also reports the form submitted throught telegram.",
-      tech: ["Next.js", "Tailwind CSS", "Telegram API"],
-      link: "https://buttonofdestiny.vercel.app/",
-      image: true,
-      isProprietary: false
-    },
-    {
-      id: 5,
-      title: "Aggregator Brand Link Website",
-      description: "A website that collects indonesia local brand links to their website, in recent trend where brand start to have their own website.",
-      tech: ["Next.js", "Tailwind CSS"],
-      link: "https://inaggre.vercel.app/",
-      image: true,
-      isProprietary: false
-    },
-  ],
+  about: "I am a passionate developer who bridges the gap between engineering and business. With a focus on creating intuitive and scalable applications, I thrive on turning complex problems into simple, beautiful solutions. When I'm not writing code, I'm exploring new technologies, or refining my business and financial sensibilities.",
   socials: {
     github: "https://github.com/kevin-buddy",
     linkedin: "https://linkedin.com",
@@ -162,67 +126,107 @@ const HeroSection = () => (
   </section>
 );
 
-const ProjectsSection = () => (
-  <section id="projects" className="py-24 px-6 md:px-12 max-w-6xl mx-auto">
-    <div className="mb-16">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-        <Briefcase className="text-gray-400" size={28} />
-        Selected Work
-      </h2>
-      <p className="text-gray-500 max-w-xl">A collection of recent projects demonstrating my expertise in building scalable and user-centric applications.</p>
-    </div>
+const ProjectsSection = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {PORTFOLIO_DATA.projects.map((project) => (
-        <div key={project.id} className="group flex flex-col overflow-hidden border border-gray-200 rounded-2xl hover:border-gray-900 transition-colors bg-white">
-          
-          {/* Conditional Image Rendering */}
-          {project.image && (
-            <div className="w-full h-48 bg-gray-100 border-b border-gray-200 relative overflow-hidden">
-                {/* Replace this div with an actual <img src={project.image} /> in your real app */}
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm font-medium">
-                    [ Project Image Placeholder ]
-                </div>
-            </div>
-          )}
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('personal_project_portfolio')
+          .select('*')
+          .order('id', { ascending: true }); // Orders by your ID column
 
-          <div className="p-8 flex flex-col flex-grow">
-            <div className="flex justify-between items-start mb-6">
-              <div className="p-3 bg-gray-50 rounded-lg group-hover:bg-gray-900 group-hover:text-white transition-colors">
-                <Code size={24} />
-              </div>
-              
-              {/* Conditional Link or Proprietary Lock Rendering */}
-              {project.isProprietary ? (
-                 <div className="flex items-center gap-1.5 text-gray-400 bg-gray-50 px-2.5 py-1 rounded-md border border-gray-100">
-                    <Lock size={14} />
-                    <span className="text-xs font-medium uppercase tracking-wider">Proprietary</span>
-                 </div>
-              ) : (
-                <a href={project.link || '#'} className="text-gray-400 hover:text-gray-900 transition-colors">
-                  <ExternalLink size={20} />
-                </a>
-              )}
-            </div>
+        if (error) throw error;
+        
+        setProjects(data || []);
+      } catch (error: any) {
+        console.error('Error fetching projects from Supabase:', error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
-            <p className="text-gray-600 mb-6 text-sm leading-relaxed flex-grow">
-              {project.description}
-            </p>
-            
-            <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-50">
-              {project.tech.map((tech) => (
-                <span key={tech} className="text-xs font-medium px-3 py-1 bg-gray-100 text-gray-600 rounded-full">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
+    fetchProjects();
+  }, []);
+
+  return (
+    <section id="projects" className="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+      <div className="mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+          <Briefcase className="text-gray-400" size={28} />
+          Selected Work
+        </h2>
+        <p className="text-gray-500 max-w-xl">A collection of recent projects demonstrating my expertise in building scalable and user-centric applications.</p>
+      </div>
+
+      {loading ? (
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-gray-900"></div>
         </div>
-      ))}
-    </div>
-  </section>
-);
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <div key={project.id} className="group flex flex-col overflow-hidden border border-gray-200 rounded-2xl hover:border-gray-900 transition-colors bg-white">
+              
+              {/* Conditional Image Rendering */}
+              {project.image && (
+              <div className="w-full h-48 border-b border-gray-100 overflow-hidden bg-gray-50">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            )}
+              
+              <div className="p-8 flex flex-col flex-grow">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="p-3 bg-gray-50 rounded-lg group-hover:bg-gray-900 group-hover:text-white transition-colors">
+                    <Code size={24} />
+                  </div>
+                  {project.isProprietary ? (
+                     <div className="flex items-center gap-1.5 text-gray-400 bg-gray-50 px-2.5 py-1 rounded-md border border-gray-100">
+                        <Lock size={14} />
+                        <span className="text-xs font-medium uppercase tracking-wider">Proprietary</span>
+                     </div>
+                  ) : (
+                    <div className="flex items-center gap-3">
+                      {project.github_url && (
+                        <a href={project.github_url} className="text-gray-400 hover:text-gray-900 transition-colors" target="_blank" rel="noreferrer" title="View Source">
+                          <Github size={20} />
+                        </a>
+                      )}
+                      {project.demo_url && (
+                        <a href={project.demo_url} className="text-gray-400 hover:text-gray-900 transition-colors" target="_blank" rel="noreferrer" title="Live Demo">
+                          <ExternalLink size={20} />
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                <p className="text-gray-600 mb-6 text-sm leading-relaxed flex-grow">
+                  {project.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-50">
+                  {project.tags?.map((tag) => (
+                    <span key={tag} className="text-xs font-medium px-3 py-1 bg-gray-100 text-gray-600 rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+};
 
 const AboutSection = () => (
   <section id="about" className="py-24 px-6 md:px-12 bg-gray-50">
@@ -237,12 +241,12 @@ const AboutSection = () => (
         </p>
         <div className="grid grid-cols-2 gap-6">
           <div>
-            <h4 className="font-bold text-gray-900 mb-2">Design</h4>
-            <p className="text-gray-500 text-sm">UI/UX, Wireframing, Prototyping, Figma</p>
+            <h4 className="font-bold text-gray-900 mb-2">Business</h4>
+            <p className="text-gray-500 text-sm">SAP, ABAP</p>
           </div>
           <div>
             <h4 className="font-bold text-gray-900 mb-2">Engineering</h4>
-            <p className="text-gray-500 text-sm">React, Next.js, Node, TypeScript, Tailwind</p>
+            <p className="text-gray-500 text-sm">React, Next.js, Node, TypeScript, Python</p>
           </div>
         </div>
       </div>
