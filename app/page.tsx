@@ -1,7 +1,9 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Menu, X, ArrowRight, Code, Briefcase, User, Send, Lock } from 'lucide-react';
+import { Mail, ExternalLink, Menu, X, ArrowRight, Code, Briefcase, User, Send, Lock } from 'lucide-react';
 import { supabase } from './lib/supabase';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+
 interface Project {
   id: number;
   title: string;
@@ -195,7 +197,7 @@ const ProjectsSection = () => {
                     <div className="flex items-center gap-3">
                       {project.github_url && (
                         <a href={project.github_url} className="text-gray-400 hover:text-gray-900 transition-colors" target="_blank" rel="noreferrer" title="View Source">
-                          <Github size={20} />
+                          <FaGithub size={20} />
                         </a>
                       )}
                       {project.demo_url && (
@@ -288,11 +290,11 @@ const Footer = () => (
       <div className="flex items-center gap-6">
         <a href={PORTFOLIO_DATA.socials.github} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors">
           <span className="sr-only">GitHub</span>
-          <Github size={20} />
+          <FaGithub size={20} />
         </a>
         <a href={PORTFOLIO_DATA.socials.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors">
           <span className="sr-only">LinkedIn</span>
-          <Linkedin size={20} />
+          <FaLinkedin size={20} />
         </a>
         <a href={`mailto:${PORTFOLIO_DATA.socials.email}`} className="text-gray-400 hover:text-gray-900 transition-colors">
           <span className="sr-only">Email</span>
