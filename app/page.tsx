@@ -20,7 +20,7 @@ const PORTFOLIO_DATA = {
   name: "Kevin Setiabudi",
   role: "Full-Stack Engineer",
   tagline: "Crafting elegant, high-performance digital experiences.",
-  about: "I am a passionate developer who bridges the gap between engineering and business. With a focus on creating intuitive and scalable applications, I thrive on turning complex problems into simple, beautiful solutions. When I'm not writing code, I'm exploring new technologies, or refining my business and financial sensibilities.",
+  about: "I am a passionate developer who has interest in technology and business. With a focus on creating fun and usefull applications. When I'm not writing code, I'm exploring new technologies such as hosting my own local home server, or learning more about business and finance.",
   socials: {
     github: "https://github.com/kevin-buddy",
     linkedin: "https://linkedin.com",
@@ -53,7 +53,12 @@ const Header = ({ activeSection }: { activeSection: string }) => {
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md border-b border-gray-100 py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-6xl mx-auto px-6 md:px-12 flex justify-between items-center">
         <a href="#home" className="text-xl font-bold tracking-tighter text-gray-900">
-          {PORTFOLIO_DATA.name.split(' ')[0]}<span className="text-gray-400">.</span>
+          <img 
+                  src='KS-Logo.jpg'
+                  alt='logo' 
+                  className="w-8 h-8 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+          {/* {PORTFOLIO_DATA.name.split(' ')[0]}<span className="text-gray-400">.</span> */}
         </a>
 
         {/* Desktop Nav */}
