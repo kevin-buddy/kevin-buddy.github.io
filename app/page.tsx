@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Mail, ExternalLink, Menu, X, ArrowRight, Code, Briefcase, User, Send, Lock } from 'lucide-react';
 import { supabase } from './lib/supabase';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -54,7 +54,7 @@ const Header = ({ activeSection }: { activeSection: string }) => {
       <div className="max-w-6xl mx-auto px-6 md:px-12 flex justify-between items-center">
         <a href="#home" className="text-xl font-bold tracking-tighter text-gray-900">
           <img 
-                  src='KS-Logo.jpg'
+                  src='K-Logo.jpg'
                   alt='logo' 
                   className="w-8 h-8 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -140,14 +140,21 @@ const ProjectsSection = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const { data, error } = await supabase
-          .from('personal_project_portfolio')
-          .select('*')
-          .order('id', { ascending: true }); // Orders by your ID column
+        const response = await fetch(`/api/portfolio`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success && result.data) {
+            setProjects(result.data || []);
+          }
+        }
+        // const { data, error } = await supabase
+        //   .from('personal_project_portfolio')
+        //   .select('*')
+        //   .order('id', { ascending: true }); // Orders by your ID column
 
-        if (error) throw error;
+        // if (error) throw error;
         
-        setProjects(data || []);
+        // setProjects(data || []);
       } catch (error: any) {
         console.error('Error fetching projects from Supabase:', error.message);
       } finally {
@@ -262,7 +269,7 @@ const AboutSection = () => (
           <div className="absolute inset-0 bg-gray-200 rounded-2xl transform rotate-3 transition-transform hover:rotate-6 duration-300"></div>
           <div className="absolute inset-0 bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
             <img 
-              src="https://xbgczuawxzxevrzunbkx.supabase.co/storage/v1/object/public/personal_project_portfolio/KS-Logo.png" 
+              src="https://xbgczuawxzxevrzunbkx.supabase.co/storage/v1/object/public/personal_project_portfolio/K-Logo.jpg" 
               alt="Alex Developer" 
               className="w-full h-full object-cover"
             />
