@@ -1,73 +1,52 @@
-# kevin-buddy.github.io
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+# 🌐 Personal Portfolio Landing Page
 
-## Getting Started
+<div align="center">
+  <p align="center">
+    <strong>kevin-buddy.github.io</strong><br />
+    A modern, high-performance developer portfolio built with Next.js to showcase my journey, technical expertise, and featured projects.
+  </p>
+  <p align="center">
+    <a href="https://kevin-buddy.github.io"><strong>Explore Live Site »</strong></a>
+  </p>
+</div>
 
-First, run the development server:
+---
+
+## 🚀 Overview
+
+This repository houses the source code for my personal portfolio website. It serves as a centralized digital hub designed to introduce myself, highlight my core competencies, and showcase a curated selection of my software engineering projects.
+
+The goal of this project is to provide visitors—ranging from potential clients and recruiters to fellow developers—with a seamless, fast, and visually engaging narrative of my technical background.
+
+### ✨ Key Features
+
+- **Project Showcase:** A dynamic, organized display of my engineering work, complete with descriptions, tech stacks, and direct links to live demos or repositories.
+- **About Me Section:** A concise snapshot of my developer journey, core engineering philosophies, and technical domains.
+- **Optimized Performance:** Built on top of Next.js to ensure lightning-fast load times, solid SEO foundations, and excellent responsiveness across all device sizes.
+- **Modern UI/UX:** Clean typography, fluid layouts, and an aesthetic tailored specifically for the tech industry.
+
+---
+
+## 🛠️ Tech Stack
+
+This project leverages modern web technologies to achieve high performance and a polished user experience:
+
+- **Framework:** [Next.js](https://nextjs.org/) (React Framework for the Web)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (Utility-first CSS framework)
+- **Icons:** Component-driven iconography sets
+- **Deployment & Hosting:** GitHub Pages / Vercel
+
+---
+
+## ⚙️ Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+Ensure you have Node.js (v18.x or later recommended) and npm or yarn installed.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+node -v
+npm -v
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Frescura - Fresh Salad
-
-**Version 1.0.0**
-
-A landing page for Salad Wrap
-
-Salad Wrap is a company that offers healthy meals that will provide your daily nutrition
-
-We put our product as our #1 priority
-
-## Created By
-
-Salad Wrap Founder
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

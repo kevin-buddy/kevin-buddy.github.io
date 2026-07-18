@@ -1,21 +1,19 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react';
 import { Mail, ExternalLink, Menu, X, ArrowRight, Code, Briefcase, User, Send, Lock } from 'lucide-react';
-import { supabase } from './lib/supabase';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
-interface Project {
+export interface Project {
   id: number;
   title: string;
   description: string;
   tags: string[];
   demo_url?: string;
   github_url?: string;
-  image?: string; // Change to string if you plan to use an image URL
+  image?: string;
   isProprietary?: boolean;
 }
 
-// --- DATA (Easily swap this out with your actual details) ---
 const PORTFOLIO_DATA = {
   name: "Kevin Setiabudi",
   role: "Full-Stack Engineer",
@@ -27,8 +25,6 @@ const PORTFOLIO_DATA = {
     email: "kevin.setiabudi@protonmail.com"
   }
 };
-
-// --- COMPONENTS ---
 
 const Header = ({ activeSection }: { activeSection: string }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -133,39 +129,8 @@ const HeroSection = () => (
   </section>
 );
 
-const ProjectsSection = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch(`/api/portfolio`);
-        if (response.ok) {
-          const result = await response.json();
-          if (result.success && result.data) {
-            setProjects(result.data || []);
-          }
-        }
-        // const { data, error } = await supabase
-        //   .from('personal_project_portfolio')
-        //   .select('*')
-        //   .order('id', { ascending: true }); // Orders by your ID column
-
-        // if (error) throw error;
-        
-        // setProjects(data || []);
-      } catch (error: any) {
-        console.error('Error fetching projects from Supabase:', error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
-  return (
+const ProjectsSection = ({ projects }: { projects: Project[] }) => {
+    return (
     <section id="projects" className="py-24 px-6 md:px-12 max-w-6xl mx-auto">
       <div className="mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 flex items-center gap-3">
@@ -175,10 +140,8 @@ const ProjectsSection = () => {
         <p className="text-gray-500 max-w-xl">A collection of recent projects demonstrating my expertise in building scalable and user-centric applications.</p>
       </div>
 
-      {loading ? (
-        <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-gray-900"></div>
-        </div>
+      {projects.length === 0 ? (
+        <p className="text-gray-500 text-center py-20">No projects available at the moment.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
@@ -320,14 +283,12 @@ const Footer = () => (
   </footer>
 );
 
-export default function App() {
+export default function PortfolioClient({ projects }: { projects: Project[] }) {
   const [activeSection, setActiveSection] = useState('home');
 
-  // Smooth scrolling implementation (simulating browser native behavior elegantly)
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Intersection Observer to update active nav link
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -348,14 +309,12 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-gray-900 selection:text-white">
       <Header activeSection={activeSection} />
-      
       <main>
         <HeroSection />
-        <ProjectsSection />
+        <ProjectsSection projects={projects} />
         <AboutSection />
         <ContactSection />
       </main>
-
       <Footer />
     </div>
   );
