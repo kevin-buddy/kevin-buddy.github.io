@@ -9,6 +9,7 @@ export default async function PortfolioPage() {
   if (token) {
     const response = await fetch(`${apiUrl}/portfolio`, {
       headers: { 'Authorization': `Bearer ${token}` },
+      cache: 'no-store'
     });
     if (response.status === 200) {
       const result = await response.json();
